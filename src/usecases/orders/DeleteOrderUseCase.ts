@@ -12,7 +12,7 @@ export class DeleteOrderUseCase {
 
         // Verifica se o usuario é dono do pedido
         if (order.userId != userId) {
-            throw new AppError('Acesso negado.', 403)
+            throw new AppError('Não é possível deletar o pedido de outro usuário.', 403)
         }
 
         // Verifica se o status do pedido é pending

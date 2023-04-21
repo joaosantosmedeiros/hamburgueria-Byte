@@ -8,11 +8,16 @@ export class UpdateOrderController {
     async handle(req: Request, res: Response) {
 
         const orderId = req.params.id
-        const { userId } = req
+        const { userId, is_admin } = req
 
         // Verifica se o userId foi enviado
         if (!userId) {
             throw new AppError('Acesso negado.', 401)
+        }
+
+        // Verifica se o usuário é admin
+        if(is_admin){
+            throw new AppError('Admins não podem atualizar pedidos.')
         }
 
         const { productId, quantity } = req.body
