@@ -13,6 +13,11 @@ export class DeleteUserController {
             throw new AppError('Acesso negado.', 401)
         }
 
+        // Verifica se o usuario está tentando deletar outro usuario
+        if(userId != id){
+            throw new AppError('Não é possivel deletar a conta de outro usuário.', 403)
+        }
+
         await deleteUser.execute(id, userId)
 
         return res.json({ message: 'Usuário deletado com sucesso.' })
