@@ -5,10 +5,10 @@ import { prisma } from "../../prisma/client";
 import bcrypt from 'bcryptjs'
 
 export class CreateUserUseCase {
-    async execute({ email, password }: UserDTO): Promise<User> {
+    async execute({ email, password, phone, address }: UserDTO): Promise<User> {
 
         // Verifica se todos os campos foram passados
-        if(!email || !password){
+        if(!email || !password || !phone || !address){
             throw new AppError('Preencha todos os campos.')
         }
 

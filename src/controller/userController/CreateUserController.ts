@@ -6,9 +6,9 @@ const createUser = new CreateUserUseCase()
 
 export class CreateUserController {
     async handle(req: Request, res: Response) {
-        const { email, password } = req.body
+        const { email, password, phone, address } = req.body
 
-        const user = await createUser.execute({ email, password })
+        const user = await createUser.execute({ email, password, phone, address })
         const token = generateToken({ id: user.id, is_admin: user.is_admin })
         req.headers.authorization = `Bearer ${token}`
 
