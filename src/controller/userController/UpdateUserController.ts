@@ -14,9 +14,9 @@ export class UpdateUserController {
             throw new AppError('Não é possível alterar a conta de outro usuário', 403)
         }
 
-        const { email, password } = req.body
+        const { email, password, phone, address } = req.body
 
-        const user = await updateUser.execute(id, { email, password })
+        const user = await updateUser.execute(id, { email, password, phone, address })
 
         return res.json({ message: 'Usuário alterarado com sucesso.', user })
     }

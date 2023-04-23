@@ -4,7 +4,7 @@ import { prisma } from "../../prisma/client";
 import bcrypt from 'bcryptjs'
 
 export class UpdateUserUseCase {
-    async execute(id: string, { email, password }: UserDTO) {
+    async execute(id: string, { email, password, phone, address }: UserDTO) {
 
         // Verifica se o usuário existe
         const user = await prisma.user.findUnique({ where: { id } })
@@ -15,6 +15,12 @@ export class UpdateUserUseCase {
         // Caso algum dos campos não sejam preenchidos, a informação do campo permanece
         if (!email) {
             email = user.email
+        }
+        if( !phone){
+            phone = user.phone
+        }
+        if( !address){
+            address = user.address
         }
         
         // Verifica se o email já está em uso por outro usuário
