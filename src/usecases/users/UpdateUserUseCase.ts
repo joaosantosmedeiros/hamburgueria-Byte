@@ -43,7 +43,9 @@ export class UpdateUserUseCase {
             where: { id },
             data: {
                 email,
-                password: hashedPassword
+                password: hashedPassword,
+                phone, 
+                address
             }
         })
 

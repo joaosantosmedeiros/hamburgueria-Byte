@@ -25,7 +25,9 @@ export class CreateUserUseCase {
         const user = await prisma.user.create({
             data:{
                 email,
-                password: hashedPassword
+                password: hashedPassword,
+                phone,
+                address
             }
         })
 
