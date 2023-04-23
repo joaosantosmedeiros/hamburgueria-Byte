@@ -45,25 +45,28 @@ INSERT INTO public.user (id, email, password, is_admin, updated_at) VALUES
 
 
 ## Endpoints
-#### Você pode testar todos os endpoints diretamente no Postman ao importar [esse](https://github.com/joaosantosmedeiros/hamburgueria-Byte/files/11291177/Hamburgueria.postman_collection.zip) arquivo. Ele contém todas as rotas com os campos já predefinidos, a única coisa que precisa ser feita é colocar a informação. Você pode também editar as variáveis já colocadas, como 'url' e 'token_admm', 'token_user' e 'token_user2' para realizar testes.
+#### Você pode testar todos os endpoints diretamente no Postman ao importar [esse](https://github.com/joaosantosmedeiros/hamburgueria-Byte/files/11304140/Hamburgueria.postman_collection.zip) arquivo. Ele contém todas as rotas com os campos já predefinidos, a única coisa que precisa ser feita é colocar a informação. Você pode também editar as variáveis já colocadas, como 'url' e 'token_admm', 'token_user' e 'token_user2' para realizar testes.
 <!--ts-->
    * Usuários
-       * *POST* - /users/create -- Cria um usuário. No body, deve conter um objeto json com as propriedades **email** e **password**. Caso tudo ocorra bem, o servidor irá mandar como resposta o **TOKEN** jwt.
+       * *POST* - /users/create -- Cria um usuário. Corpo: </br>
+       ``{ "email": "", "password": "", "phone": "", "address": "" }`` </br>
        * *GET* - /users/get/:id -- Exibe um usuário. Apenas um admin ou o próprio usuário pode ler a si mesmo.
        * *GET* - /users/get -- Exibe todos os usuários. Apenas um admin poderá entrar nessa rota.
-       * *PUT* - /users/update/:id -- Atualiza um usuário. Um usuário pode atualizar apenas a si mesmo, podendo ou não enviar os campos **email** e **password**. Caso ele não envie um dos campos, a informação permanecerá a mesma.
+       * *PUT* - /users/update/:id -- Atualiza um usuário. Um usuário pode atualizar apenas a si mesmo, podendo ou não enviar os campos **email**, **password**, **phone** e **address**. Caso ele não envie um dos campos, a informação permanecerá a mesma.
        * *DELETE* - /users/delete/:id -- Deleta um usuário. Um usuário pode deletar apenas a si mesmo.
        * *POST* - /users/auth -- Autentica um usuário. O usuário deve enviar os campos **email** e **password**.
 
    * Produtos -- Todas as rotas devem ser acessadas com um token de um admin.
-      * *POST* - /products/create -- Cria um produto. Deve conter um objeto json com as propriedades **name**, **description** e **price** (number).
+      * *POST* - /products/create -- Cria um produto. Corpo: </br>
+      ``{ "name": "", "description", "price": 0 }`` </br>
       * *GET* - /products/get/:id -- Exibe um produto.
       * *GET* - /products/get -- Exibe todos os produtos.
       * *PUT* - /products/update/:id -- Atualiza um produto. Pode ou não conter os campos **name**, **description** e **price**. Caso não seja enviado um dos campos, a informação permanecerá a mesma.
       * *DELETE* - /products/delete/:id -- Deleta um produto.
 
    * Pedidos
-      * *POST* - /order/create -- Cria um pedido. Deve ser feito com a autenticação de um cliente e conter um objeto json com as propriedades **productId** e **quantity** (number).
+      * *POST* - /order/create -- Cria um pedido. Deve ser feito com a autenticação de um cliente no header. Corpo: </br>
+       ``{ "productId": "", "quantity": 0 }`` </br>
       * *GET* - /order/get/:id -- Exibe um pedido. Apenas o usuário que fez um pedido ou um admin pode acessá-lo.
       * *GET* - /order/get -- Exibe todos os pedidos. Apenas um admin pode acessá-lo.
       * *PUT* - /order/update/:id -- Atualiza um pedido. Pode ou não conter os campos **productId** e **quantity**. Caso não seja enviado um dos campos, a informação
@@ -73,3 +76,6 @@ INSERT INTO public.user (id, email, password, is_admin, updated_at) VALUES
       * *GET* - /order/deny/:id -- Recusa um pedido que está com o status pendente. Apenas um admin pode realizar essa operação.
 <!--te-->
 
+
+### Deploy
+Este projeto está rodando [neste](https://hamburgueria-byte.onrender.com) link.
