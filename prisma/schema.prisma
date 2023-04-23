@@ -24,6 +24,8 @@ model User {
   id         String   @id @default(uuid())
   email      String   @unique
   password   String
+  phone      String
+  address    String
   is_admin   Boolean  @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt()
@@ -39,7 +41,7 @@ model Order {
   product     Product  @relation("product", fields: [productId], references: [id])
   productId   String
   quantity    Int
-  situation    Status   @default(PENDING)
+  situation   Status   @default(PENDING)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
   total_price Float
@@ -47,7 +49,7 @@ model Order {
   @@map("order")
 }
 
-enum Status{
+enum Status {
   ACCEPTED
   PENDING
   DENIED
